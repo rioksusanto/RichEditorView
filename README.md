@@ -4,6 +4,24 @@ RichEditorView
 [![Cocoapods](https://img.shields.io/cocoapods/v/RichEditorView.svg)](http://cocoapods.org/pods/RichEditorView)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 
+This Repo is fork from https://github.com/cjwirth/RichEditorView 
+--------------
+Since the original repo cannot choose colors, images and enter hpyer link. I include [IGColorPicker](https://github.com/iGenius-Srl/IGColorPicker) for choosing color, [SCLAlertView](https://github.com/vikmeup/SCLAlertView-Swift) for setting href for links, and lastly use native image picker for inserting images. 
+--------------
+Usage on top of RichEditorView 
+```Swift
+import RichEditorView 
+@IBOutlet var editorView: RichEditorView!
+let richTextEditor = JJRichTextEditor(frame:  CGRect(x:  0, y: 0, width: self.view.bounds.width, height: 44))
+richTextEditor.editorView = editorView
+    
+
+
+```
+
+--------------
+
+
 RichEditorView is a simple, modular, drop-in UIView subclass for Rich Text Editing.
 
 Written in Swift 3.0
