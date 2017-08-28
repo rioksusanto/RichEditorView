@@ -1,17 +1,16 @@
 {
   "name": "RichEditorView",
-  "version": "3.2.0",
-  "summary": "Rich Text Editor for iOS written in Swift",
-  "homepage": "https://github.com/cjwirth/RichEditorView",
+  "version": "4.0.0",
+  "summary": "Rich Text Editor for iOS written in Swift -- Base on RichEditorView",
+  "homepage": "https://github.com/KakitLee/RichEditorView",
   "license": "BSD 3-clause",
   "authors": {
     "Caesar Wirth": "cjwirth@gmail.com"
   },
   "source": {
-    "git": "https://github.com/cjwirth/RichEditorView.git",
-    "tag": "3.2.0"
+    "git": "https://github.com/KakitLee/RichEditorView.git",
+    "tag": "4.0.0"
   },
-  "social_media_url": "https://twitter.com/cjwirth",
   "platforms": {
     "ios": "8.0"
   },
@@ -20,5 +19,13 @@
   "resources": [
     "RichEditorView/Assets/icons/*",
     "RichEditorView/Assets/editor/*"
-  ]
+  ],
+  "dependencies": {
+    "IGColorPicker": [
+      "0.2.1"
+    ],
+    "SCLAlertView": [
+      "0.7.0"
+    ]
+  }
 }
