@@ -150,7 +150,7 @@ RE.redo = function() {
 };
 
 RE.setBold = function() {
-    document.execCommand('bold', false, null);
+    document.execCommand('strong', false, null);
 };
 
 RE.setItalic = function() {
