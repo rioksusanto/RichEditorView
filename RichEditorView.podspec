@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name             = "RichEditorView"
-  s.version          = "4.0.2"
+  s.version          = "4.0.3"
   s.summary          = "Rich Text Editor for iOS written in Swift -- Base on RichEditorView"
   s.homepage         = "https://github.com/KakitLee/RichEditorView"
   s.license          = 'BSD 3-clause'
   s.author           = { "Caesar Wirth" => "cjwirth@gmail.com" }
-  s.source           = { :git => "https://github.com/KakitLee/RichEditorView.git", :tag => s.version.to_s } 
+  s.source           = { :git => "https://github.com/KakitLee/RichEditorView.git", :branch => "develop" } 
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
