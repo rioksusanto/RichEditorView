@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/KakitLee/RichEditorView"
   s.license          = 'BSD 3-clause'
   s.author           = { "Caesar Wirth" => "cjwirth@gmail.com" }
-  s.source           = { :git => "https://github.com/KakitLee/RichEditorView.git", :branch => develop } 
+  s.source           = { :git => "https://github.com/KakitLee/RichEditorView.git", :branch => "develop" } 
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
