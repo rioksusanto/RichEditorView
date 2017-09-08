@@ -109,6 +109,10 @@ RE.getHtml = function() {
     return RE.editor.innerHTML;
 };
 
+RE.getOuterHtml = function() {
+    return RE.editor.outerHTML;
+};
+
 RE.getText = function() {
     return RE.editor.innerText;
 };

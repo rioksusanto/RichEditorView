@@ -165,6 +165,13 @@ open class RichEditorView: UIView, UIScrollViewDelegate, UIWebViewDelegate, UIGe
         addGestureRecognizer(tapRecognizer)
     }
 
+    public var outerHtml: String {
+        get {
+            return runJS("RE.getOuterHtml();");
+        }
+    }
+    
+    
     // MARK: - Rich Text Editing
 
     // MARK: Properties
