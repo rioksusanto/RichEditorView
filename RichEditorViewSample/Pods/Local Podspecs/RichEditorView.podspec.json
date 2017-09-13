@@ -1,6 +1,6 @@
 {
   "name": "RichEditorView",
-  "version": "4.0.0",
+  "version": "4.0.3",
   "summary": "Rich Text Editor for iOS written in Swift -- Base on RichEditorView",
   "homepage": "https://github.com/KakitLee/RichEditorView",
   "license": "BSD 3-clause",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/KakitLee/RichEditorView.git",
-    "tag": "4.0.0"
+    "branch": "develop"
   },
   "platforms": {
     "ios": "8.0"

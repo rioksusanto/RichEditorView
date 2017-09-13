@@ -56,10 +56,26 @@ open class RichEditorToolbar: UIView {
     /// A reference to the RichEditorView that it should be performing actions on
     open weak var editor: RichEditorView?
 
+    open var doubleRows:Bool = false {
+        didSet {
+            if(doubleRows) {
+                updateSecondaryToolbar()
+            }
+        }
+    }
+    
     /// The list of options to be displayed on the toolbar
     open var options: [RichEditorOption] = [] {
         didSet {
             updateToolbar()
+        }
+    }
+    
+    open var secondaryOptions: [RichEditorOption] = [] {
+        didSet {
+            if(doubleRows) {
+                updateSecondaryToolbar()
+            }
         }
     }
 
@@ -71,11 +87,13 @@ open class RichEditorToolbar: UIView {
 
     private var toolbarScroll: UIScrollView
     private var toolbar: UIToolbar
+    private var secondaryToolbar:UIToolbar
     private var backgroundToolbar: UIToolbar
     
     public override init(frame: CGRect) {
         toolbarScroll = UIScrollView()
         toolbar = UIToolbar()
+        secondaryToolbar = UIToolbar()
         backgroundToolbar = UIToolbar()
         super.init(frame: frame)
         setup()
@@ -84,6 +102,7 @@ open class RichEditorToolbar: UIView {
     public required init?(coder aDecoder: NSCoder) {
         toolbarScroll = UIScrollView()
         toolbar = UIToolbar()
+        secondaryToolbar = UIToolbar()
         backgroundToolbar = UIToolbar()
         super.init(coder: aDecoder)
         setup()
@@ -101,6 +120,11 @@ open class RichEditorToolbar: UIView {
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
 
+        secondaryToolbar.autoresizingMask = .flexibleWidth
+        secondaryToolbar.backgroundColor = .clear
+        secondaryToolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        secondaryToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        
         toolbarScroll.frame = bounds
         toolbarScroll.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         toolbarScroll.showsHorizontalScrollIndicator = false
@@ -108,6 +132,7 @@ open class RichEditorToolbar: UIView {
         toolbarScroll.backgroundColor = .clear
 
         toolbarScroll.addSubview(toolbar)
+        toolbarScroll.addSubview(secondaryToolbar)
 
         addSubview(backgroundToolbar)
         addSubview(toolbarScroll)
@@ -133,7 +158,7 @@ open class RichEditorToolbar: UIView {
             }
         }
         toolbar.items = buttons
-
+        
         let defaultIconWidth: CGFloat = 22
         let barButtonItemMargin: CGFloat = 11
         let width: CGFloat = buttons.reduce(0) {sofar, new in
@@ -153,4 +178,42 @@ open class RichEditorToolbar: UIView {
         toolbarScroll.contentSize.width = width
     }
     
+    private func updateSecondaryToolbar() {
+        var secondaryButtons = [UIBarButtonItem]()
+        for option in secondaryOptions {
+            let handler = { [weak self] in
+                if let strongSelf = self {
+                    option.action(strongSelf)
+                }
+            }
+            
+            if let image = option.image {
+                let button = RichBarButtonItem(image: image, handler: handler)
+                secondaryButtons.append(button)
+            } else {
+                let title = option.title
+                let button = RichBarButtonItem(title: title, handler: handler)
+                secondaryButtons.append(button)
+            }
+        }
+        secondaryToolbar.items = secondaryButtons
+        
+        let defaultIconWidth: CGFloat = 22
+        let barButtonItemMargin: CGFloat = 11
+        let width: CGFloat = secondaryButtons.reduce(0) {sofar, new in
+            if let view = new.value(forKey: "view") as? UIView {
+                return sofar + view.frame.size.width + barButtonItemMargin
+            } else {
+                return sofar + (defaultIconWidth + barButtonItemMargin)
+            }
+        }
+        
+        if width < frame.size.width {
+            secondaryToolbar.frame.size.width = frame.size.width
+        } else {
+            secondaryToolbar.frame.size.width = width
+        }
+        secondaryToolbar.frame.size.height = 44
+        secondaryToolbar.frame.origin.y = 44
+    }
 }

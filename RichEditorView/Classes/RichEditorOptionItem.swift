@@ -84,6 +84,18 @@ public enum RichEditorDefaultOption: RichEditorOption {
         .indent, outdent, orderedList, unorderedList,
         .alignLeft, .alignCenter, .alignRight, .image, .link
     ]
+    
+    public static let firstRow: [RichEditorDefaultOption] = [
+        .header(1), .header(2), .header(3), .header(4), .header(5), .header(6),
+        .bold, .italic, .undo, .redo, .subscript, .superscript, .clear,
+    ]
+    
+    public static let secondRow: [RichEditorDefaultOption] = [
+        .textColor, .textBackgroundColor,
+        .strike, .underline,
+        .indent, outdent, orderedList, unorderedList,
+        .alignLeft, .alignCenter, .alignRight, .image, .link
+    ]
 
     // MARK: RichEditorOption
 

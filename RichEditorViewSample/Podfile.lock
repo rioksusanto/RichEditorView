@@ -2,7 +2,7 @@ PODS:
   - IGColorPicker (0.2.1):
     - M13Checkbox (~> 2.2.0)
   - M13Checkbox (2.2.6)
-  - RichEditorView (4.0.0):
+  - RichEditorView (4.0.3):
     - IGColorPicker (= 0.2.1)
     - SCLAlertView (= 0.7.0)
   - SCLAlertView (0.7.0)
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   IGColorPicker: a6ed1bf42cccf9e260e24d33faec5263310b4cef
   M13Checkbox: 9989b7e275f18493bd33b960dc68374c47d0027b
-  RichEditorView: dbb93e68b3d388864bdb3aed4798ca4395bab1ef
+  RichEditorView: c1815138d687540e41cb805b180e1d9cb37027d4
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
 
 PODFILE CHECKSUM: db274185d3928152699d5fb4a21714929f874dd8

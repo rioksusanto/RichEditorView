@@ -34,17 +34,33 @@ open class JJRichTextEditor: UIView {
             colorPickerView.delegate = self
             self.addSubview(colorPickerView)
             
-            // We will create a custom action that clears all the input text when it is pressed
-            let item = RichEditorOptionItem(image: nil, title: "Clear") { toolbar in
-                toolbar.editor?.html = ""
-            }
-            
-            var options = toolbar.options
-            options.append(item)
-            toolbar.options = options
         }
     }
     public var htmlTextView: UITextView!
+    public var doubleRows: Bool = false {
+        willSet {
+            toolbar.doubleRows = newValue
+            if(newValue) {
+                toolbar.options = RichEditorDefaultOption.firstRow
+                toolbar.secondaryOptions = RichEditorDefaultOption.secondRow
+                colorDotWidth = self.frame.height / 2 - 20
+                colorPickerView = {
+                    let colorPickerView = ColorPickerView(frame: CGRect(x:  0, y: -self.frame.height, width: self.bounds.width, height: self.frame.height))
+                    colorPickerView.selectionStyle = .none
+                    colorPickerView.layer.shadowColor = UIColor.clear.cgColor
+                    colorPickerView.layer.shadowOffset = CGSize.zero
+                    colorPickerView.layer.shadowOpacity = 0.7
+                    colorPickerView.layer.shadowRadius = 5
+                    colorPickerView.layer.cornerRadius = 5
+                    colorPickerView.backgroundColor = UIColor(red: CGFloat(244) / CGFloat(255), green: CGFloat(244) / CGFloat(255), blue: CGFloat(244) / CGFloat(255), alpha: 1)
+                    return colorPickerView
+                }()
+
+            }else{
+                toolbar.options = RichEditorDefaultOption.all
+            }
+        }
+    }
     
     //Color Picker
     lazy var colorDotWidth:CGFloat = {
@@ -62,11 +78,11 @@ open class JJRichTextEditor: UIView {
         colorPickerView.layer.shadowOpacity = 0.7
         colorPickerView.layer.shadowRadius = 5
         colorPickerView.layer.cornerRadius = 5
-        colorPickerView.backgroundColor = UIColor.white
+        colorPickerView.backgroundColor = UIColor(red: CGFloat(244) / CGFloat(255), green: CGFloat(244) / CGFloat(255), blue: CGFloat(244) / CGFloat(255), alpha: 1)
         return colorPickerView
     }()
     
-    lazy var toolbar: RichEditorToolbar = {
+    public lazy var toolbar: RichEditorToolbar = {
         let toolbar = RichEditorToolbar(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.frame.height))
         toolbar.options = RichEditorDefaultOption.all
         return toolbar
@@ -179,7 +195,6 @@ extension JJRichTextEditor: ColorPickerViewDelegateFlowLayout {
     public func colorPickerView(_ colorPickerView: ColorPickerView, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return colorDotPadding
     }
-    
     
 }
 
