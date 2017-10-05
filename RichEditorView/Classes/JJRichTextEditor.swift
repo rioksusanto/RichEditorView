@@ -34,6 +34,14 @@ open class JJRichTextEditor: UIView {
             colorPickerView.delegate = self
             self.addSubview(colorPickerView)
             
+            // We will create a custom action that clears all the input text when it is pressed		
+            let item = RichEditorOptionItem(image: nil, title: "Rio") { toolbar in		
+                toolbar.editor?.html = ""		
+            }		
+            		
+            var options = toolbar.options		
+            options.append(item)		
+            toolbar.options = options
         }
     }
     public var htmlTextView: UITextView!
